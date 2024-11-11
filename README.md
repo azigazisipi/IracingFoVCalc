@@ -26,7 +26,7 @@ A user-friendly Field of View (FOV) calculator for sim racing, specifically tail
 ## Installation
 
 To run the application:
-1. Download the latest release from the [Releases](https://github.com/azigazisipi/IracingFoVCalc/releases/tag/1.0.0) section.
+1. Download the latest release from the [Releases](https://github.com/azigazisipi/IracingFoVCalc/releases/tag/1.1.5) section.
 2. Ensure .NET Framework 4.8 is installed on your computer.
 3. Run the `iRacingFOVCalculator.exe` file to open the app.
 
