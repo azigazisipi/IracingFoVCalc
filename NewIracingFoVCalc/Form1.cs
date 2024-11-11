@@ -60,7 +60,7 @@ namespace NewIracingFoVCalc
         {
             try
             {
-                // Parse input values
+                // Parse the input values from TextBoxes
                 double screenWidth = double.Parse(textBoxScreenWidth.Text);
                 double distanceToScreen = double.Parse(textBoxDistanceToScreen.Text);
                 double fov;
@@ -68,18 +68,43 @@ namespace NewIracingFoVCalc
                 // Determine if it's a single or triple screen setup
                 if (comboBoxScreenSetup.SelectedItem != null && comboBoxScreenSetup.SelectedItem.ToString() == "Triple")
                 {
-                    // Triple screen setup: Calculate FOV for one screen and multiply by 3
-                    double singleScreenFOV = 2 * Math.Atan((screenWidth / 2) / distanceToScreen) * (180 / Math.PI);
-                    fov = singleScreenFOV * 3;
+                    double screenAngle = double.Parse(textBoxScreenAngle.Text);
+                    double screenAngleRadians = Math.PI * screenAngle / 180;
+
+                    // Check if the monitor type is "Curved"
+                    if (comboBoxMonitorType.SelectedItem != null && comboBoxMonitorType.SelectedItem.ToString() == "Curved")
+                    {
+                        double curvatureRadius = double.Parse(textBoxMonitorCurvature.Text);
+
+                        // Adjust the distance for curved monitors
+                        double adjustedDistance = distanceToScreen - (curvatureRadius - Math.Sqrt(Math.Pow(curvatureRadius, 2) - Math.Pow(screenWidth / 3, 2)));
+                        fov = 2 * Math.Atan((screenWidth * 1.5) / (adjustedDistance * Math.Cos(screenAngleRadians / 2))) * (180 / Math.PI);
+                    }
+                    else
+                    {
+                        // Use regular distance for flat monitors
+                        fov = 2 * Math.Atan((screenWidth * 1.5) / (distanceToScreen * Math.Cos(screenAngleRadians / 2))) * (180 / Math.PI);
+                    }
                 }
                 else
                 {
-                    // Single screen setup: Calculate FOV
-                    fov = 2 * Math.Atan((screenWidth / 2) / distanceToScreen) * (180 / Math.PI);
+                    // Single screen setup: Calculate FOV with or without curvature adjustment
+                    double adjustedDistance = distanceToScreen;
+
+                    if (comboBoxMonitorType.SelectedItem != null && comboBoxMonitorType.SelectedItem.ToString() == "Curved")
+                    {
+                        double curvatureRadius = double.Parse(textBoxMonitorCurvature.Text);
+                        adjustedDistance = distanceToScreen - (curvatureRadius - Math.Sqrt(Math.Pow(curvatureRadius, 2) - Math.Pow(screenWidth / 2, 2)));
+                    }
+
+                    fov = 2 * Math.Atan((screenWidth / 2) / adjustedDistance) * (180 / Math.PI);
                 }
 
-                // Display the calculated FOV
-                labelFOVResult.Text = $"FOV: {fov:F2}°";
+                // Round the FOV to the nearest whole number
+                int roundedFov = (int)Math.Round(fov);
+
+                // Display the rounded FOV in the label
+                labelFOVResult.Text = $"FOV: {roundedFov}°";
             }
             catch (FormatException)
             {
@@ -90,5 +115,6 @@ namespace NewIracingFoVCalc
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
