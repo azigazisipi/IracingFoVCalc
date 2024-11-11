@@ -32,6 +32,10 @@ To run the application:
 
 ## Changelog
 
+### [v1.1.5] - 2024-11-11
+- Refinded triple screen calculation.
+- Updated curved screen calculation.
+
 ### [v1.1.0] - 2024-11-11
 - Refined FOV calculations for triple-screen setups with monitor angle adjustments.
 - Added rounding of FOV results to nearest whole number for ease of use.
