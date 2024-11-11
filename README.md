@@ -35,7 +35,6 @@ To run the application:
 ### [v1.1.0] - 2024-11-11
 - Refined FOV calculations for triple-screen setups with monitor angle adjustments.
 - Added rounding of FOV results to nearest whole number for ease of use.
-- Improved UI for FOV calculator.
 
 ### [v1.0.0] - 2024-11-11
 - Initial release of iRacing FOV Calculator.
