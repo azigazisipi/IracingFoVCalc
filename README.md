@@ -17,7 +17,7 @@ A user-friendly Field of View (FOV) calculator for sim racing, specifically tail
 
 1. **Select Screen Setup**: Choose between "Single" or "Triple" screen setup.
 2. **Enter Parameters**:
-   - **Screen Width** (in mm)
+   - **Screen Width** (w/o bezels in mm)
    - **Distance to Screen** (in mm)
    - **Screen Angle** (in degrees, for triple screens)
    - **Monitor Curvature** (optional, for curved monitors)
