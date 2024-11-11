@@ -30,6 +30,18 @@ To run the application:
 2. Ensure .NET Framework 4.8 is installed on your computer.
 3. Run the `iRacingFOVCalculator.exe` file to open the app.
 
+## Changelog
+
+### [v1.1.0] - 2024-11-11
+- Refined FOV calculations for triple-screen setups with monitor angle adjustments.
+- Added rounding of FOV results to nearest whole number for ease of use.
+- Improved UI for FOV calculator.
+
+### [v1.0.0] - 2024-11-11
+- Initial release of iRacing FOV Calculator.
+- Support for single and triple screen setups.
+- Input fields for screen width, distance to screen, and screen angle.
+
 ## Development
 
 To modify or contribute to this project:
